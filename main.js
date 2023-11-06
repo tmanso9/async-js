@@ -1,35 +1,18 @@
 const getTodos = (path) => {
-	return new Promise((resolve, reject) => {
-		const request = new XMLHttpRequest()
-
-		request.addEventListener('readystatechange', () => {
-			if (request.readyState === 4) {
-				if (request.status === 200) {
-					const data = JSON.parse(request.responseText)
-					resolve(data)
-				} else {
-					reject('could not fetch data')
-				}
+	fetch(path)
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error('error fetching')
 			}
+			console.log(response)
+			return response.json()
 		})
-
-		request.open('GET', path)
-		request.send()
-	})
+		.then((data) => {
+			console.log(data)
+		})
+		.catch((err) => {
+			console.error(err)
+		})
 }
 
-getTodos('todos/mario.json')
-	.then((data) => {
-		console.log(data)
-		return getTodos('todos/luigi.json')
-	})
-	.then((data) => {
-		console.log(data)
-		return getTodos('todos/yoshi.json')
-	})
-	.then(data => {
-		console.log(data)
-	})
-	.catch((err) => {
-		console.error(err)
-	})
+getTodos('todos/luigi.json')
