@@ -13,4 +13,4 @@ const getTodos = async (path) => {
 
 getTodos('todos/luigi.json')
 	.then((data) => console.log(data))
-	.catch((err) => console.error(err))
+	.catch((err) => console.error(err.message))
