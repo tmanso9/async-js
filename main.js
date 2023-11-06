@@ -1,6 +1,6 @@
 const getTodos = (path, callback) => {
 	const request = new XMLHttpRequest()
-	
+
 	request.addEventListener('readystatechange', () => {
 		// console.log(request, request.readyState)
 		if (request.readyState === 4) {
@@ -12,37 +12,22 @@ const getTodos = (path, callback) => {
 			}
 		}
 	})
-	
+
 	request.open('GET', path)
 	request.send()
 }
 
-console.log(1)
-console.log(2)
-
-getTodos('/todos/luigi.json', (err, data) => {
-	if (err) {
-		console.log(err)
-	} else {
-		console.log(data)
-	}
-	getTodos('/todos/yoshi.json', (err, data) => {
-		if (err) {
-			console.log(err)
-		} else {
-			console.log(data)
-		}
-		getTodos('/todos/mario.json', (err, data) => {
-			if (err) {
-				console.log(err)
-			} else {
-				console.log(data)
-			}
-		})
+const getSomething = () => {
+	return new Promise((resolve, reject) => {
+		resolve('some data')
+		// reject('some error')
 	})
-})
+}
 
-
-
-console.log(3)
-console.log(4)
+getSomething()
+	.then((data) => {
+		console.log(data)
+	})
+	.catch((err) => {
+		console.error(err)
+	})
