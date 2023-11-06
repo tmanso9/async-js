@@ -21,6 +21,14 @@ const getTodos = (path) => {
 getTodos('todos/mario.json')
 	.then((data) => {
 		console.log(data)
+		return getTodos('todos/luigi.json')
+	})
+	.then((data) => {
+		console.log(data)
+		return getTodos('todos/yoshi.json')
+	})
+	.then(data => {
+		console.log(data)
 	})
 	.catch((err) => {
 		console.error(err)
